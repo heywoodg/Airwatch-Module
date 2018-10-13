@@ -1,4 +1,5 @@
-﻿function Get-CMSURLAuthorizationHeader {
+﻿Add-Type -AssemblyName System.Security
+function Get-CMSURLAuthorizationHeader {
         [CmdletBinding()]
         [OutputType([string])]
         Param
@@ -119,6 +120,7 @@ function Set-AWUserAttribute {
             Catch {
             Write-Error "$($_.Exception.Message) - Line Number $($_.InvocationInfo.ScriptLineNumber)"
             }#end Catch
+            Return $reply
         }#end process
         End {}
     } #end function
