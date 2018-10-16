@@ -303,8 +303,9 @@ function Get-AWOrganisationalGroups {
     End {}
     } #end function
 
-Export-ModuleMember -function set-AWUserAttribute
+Export-ModuleMember -function Set-AWUserAttribute
 Export-ModuleMember -function Get-AWUserID
+Export-ModuleMember -function Get-AWUsers
 Export-ModuleMember -function Get-AWDevices
 Export-ModuleMember -function Get-AWOrganisationalGroups
 
