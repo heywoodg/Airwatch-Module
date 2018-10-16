@@ -1,5 +1,6 @@
 $here = split-path -parent $MyInvocation.MyCommand.path
 $module = 'Airwatch'
+# Change the next two variables before running depending on the environment
 $server = 'myserver'
 $Certificate = 'mycertificate'
 
