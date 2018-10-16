@@ -1,5 +1,7 @@
 $here = split-path -parent $MyInvocation.MyCommand.path
 $module = 'Airwatch'
+$server = 'myserver'
+$Certificate = 'mycertificate'
 
 Describe "$module Module Tests" {
 
@@ -29,10 +31,10 @@ Describe "$module Module Tests" {
             $result = $false
             $reply = $null
             $parms = @{'userID'='96145';
-                'Server'='https://awc.gdfsuez-es.com';
+                'Server'="$server";
                 'Attribute'='email';
                 'value'='a1@company.com';
-                'CertificateSubjectName'='CN=4610:APIMGMT-IPRUK'
+                'CertificateSubjectName'=$Certificate
             }
             $reply = Set-AWUserAttribute @parms
             if ($reply[0].values[0] -like '*CMSURL*'){$result = $true} 
@@ -42,10 +44,10 @@ Describe "$module Module Tests" {
         It "Result of function $function" {
             $result = $false
             $reply = $null
-            $parms = @{'Server'='https://awc.gdfsuez-es.com';
+            $parms = @{'Server'="$server";
                 'Attribute'='username';
                 'Value'='aaa1';
-                'CertificateSubjectName'='CN=4610:APIMGMT-IPRUK'
+                'CertificateSubjectName'=$Certificate
             }
             $reply = Get-AWUserID @parms
             if ($reply.users.id.value -eq 96145){$result = $true} 
@@ -55,9 +57,9 @@ Describe "$module Module Tests" {
         It "Result of function $function" {
             $result = $true
             $reply = $null
-            $parms = @{'Server'='https://awc.gdfsuez-es.com';
+            $parms = @{'Server'="$server";
                 'OrganisationalGroup'=1048;
-                'CertificateSubjectName'='CN=4610:APIMGMT-IPRUK'
+                'CertificateSubjectName'=$Certificate
             }
             $reply = Get-AWUsers @parms
             if (($reply.users.username) -eq $null) {$result = $false} 
@@ -68,9 +70,9 @@ Describe "$module Module Tests" {
         It "Result of function $function" {
             $result = $true
             $reply = $null
-            $parms = @{'Server'='https://awc.gdfsuez-es.com';
+            $parms = @{'Server'="$server";
                 'OrganisationalGroup'=1048;
-                'CertificateSubjectName'='CN=4610:APIMGMT-IPRUK'
+                'CertificateSubjectName'=$Certificate
             }
             $reply = Get-AWDevices @parms
             if (($reply.users.username) -eq $null) {$result = $false} 
@@ -81,8 +83,8 @@ Describe "$module Module Tests" {
         It "Result of function $function" {
             $result = $true
             $reply = $null
-            $parms = @{'Server'='https://awc.gdfsuez-es.com';
-                'CertificateSubjectName'='CN=4610:APIMGMT-IPRUK'
+            $parms = @{'Server'="$server";
+                'CertificateSubjectName'=$Certificate
             }
             $reply = Get-AWOrganisationalGroups @parms
             if (($reply.users.username) -eq $null) {$result = $false} 
